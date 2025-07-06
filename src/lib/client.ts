@@ -10,6 +10,8 @@ export const client = createClient<AppRouter>({
 });
 
 function getBaseUrl() {
-  if (process.env.APP_DOMAIN) return `https://${process.env.APP_DOMAIN}`;
+  if (process.env.NODE_ENV === "production" && process.env.APP_DOMAIN) {
+    return `https://${process.env.APP_DOMAIN}`;
+  }
   return `http://localhost:3000`;
 }
