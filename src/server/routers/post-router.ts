@@ -1,34 +1,33 @@
-import { z } from "zod"
-import { j, publicProcedure } from "../jstack"
+import { z } from "zod";
+import { j, publicProcedure } from "../jstack";
+import { databases } from "@/lib/appwrite";
+import { type Posts } from "@/types/appwrite";
+import { ID } from "appwrite";
 
-// Mocked DB
-interface Post {
-  id: number
-  name: string
-}
-
-const posts: Post[] = [
-  {
-    id: 1,
-    name: "Hello World",
-  },
-]
+const DATABASE_ID = "main";
+const POSTS_COLLECTION_ID = "posts";
 
 export const postRouter = j.router({
-  recent: publicProcedure.query(({ c }) => {
-    return c.superjson(posts.at(-1) ?? null)
+  recent: publicProcedure.query(async ({ c }) => {
+    const posts = await databases.listDocuments<Posts>(
+      DATABASE_ID,
+      POSTS_COLLECTION_ID,
+    );
+    return c.superjson(posts.documents.at(-1) ?? null);
   }),
 
   create: publicProcedure
     .input(z.object({ name: z.string().min(1) }))
-    .mutation(({ c, input }) => {
-      const post: Post = {
-        id: posts.length + 1,
-        name: input.name,
-      }
+    .mutation(async ({ c, input }) => {
+      const post = await databases.createDocument<Posts>(
+        DATABASE_ID,
+        POSTS_COLLECTION_ID,
+        ID.unique(),
+        {
+          name: input.name,
+        },
+      );
 
-      posts.push(post)
-
-      return c.superjson(post)
+      return c.superjson(post);
     }),
-})
+});
