@@ -10,8 +10,8 @@ export const client = createClient<AppRouter>({
 });
 
 function getBaseUrl() {
-  if (process.env.APP_DOMAIN) {
-    return `https://${process.env.APP_DOMAIN}`;
+  if (process.env.NEXT_PUBLIC_APP_DOMAIN) {
+    return `https://${process.env.NEXT_PUBLIC_APP_DOMAIN}`;
   }
   return `http://localhost:3000`;
 }
