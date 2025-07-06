@@ -6,5 +6,10 @@ import { createClient } from "jstack";
  * @see https://jstack.app/docs/backend/api-client
  */
 export const client = createClient<AppRouter>({
-  baseUrl: "http://localhost:3000/api",
+  baseUrl: getBaseUrl() + "/api",
 });
+
+function getBaseUrl() {
+  if (process.env.APP_DOMAIN) return `https://${process.env.APP_DOMAIN}`;
+  return `http://localhost:3000`;
+}
