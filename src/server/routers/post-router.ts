@@ -2,7 +2,7 @@ import { z } from "zod";
 import { j, publicProcedure } from "../jstack";
 import { databases } from "@/lib/appwrite";
 import { type Posts } from "@/types/appwrite";
-import { ID } from "appwrite";
+import { ID, Query } from "appwrite";
 
 const DATABASE_ID = "main";
 const POSTS_COLLECTION_ID = "posts";
@@ -12,6 +12,7 @@ export const postRouter = j.router({
     const posts = await databases.listDocuments<Posts>(
       DATABASE_ID,
       POSTS_COLLECTION_ID,
+      [Query.orderDesc("$createdAt"), Query.limit(1)],
     );
     return c.superjson(posts.documents.at(-1) ?? null);
   }),

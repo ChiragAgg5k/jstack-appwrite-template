@@ -33,6 +33,8 @@ export default async function Home() {
 
         <div className="flex flex-row items-center justify-center gap-2">
           <Link
+            target="_blank"
+            rel="noopener noreferrer"
             href="https://www.chiragaggarwal.tech/blog/jstack-appwrite-a-match-made-in-heaven-for-modern-web-development"
             className={cn(
               "text-white text-sm",
