@@ -31,4 +31,4 @@ Ship high-performance Next.js apps for extremely cheap using Appwrite.
 
    > **Note:** Example env consists of an example Appwrite project. You can use your own Appwrite project by updating the env variables.
 
-Check out the blog post for more details: [JStack + Appwrite](https://www.chiragaggarwal.tech/blog)
+Check out the blog post for more details: [JStack + Appwrite](https://www.chiragaggarwal.tech/blog/jstack-appwrite-a-match-made-in-heaven-for-modern-web-development)
