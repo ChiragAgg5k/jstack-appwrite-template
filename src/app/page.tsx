@@ -33,7 +33,7 @@ export default async function Home() {
 
         <div className="flex flex-row items-center justify-center gap-2">
           <Link
-            href="https://jstack.app/blog"
+            href="https://www.chiragaggarwal.tech/blog/jstack-appwrite-a-match-made-in-heaven-for-modern-web-development"
             className={cn(
               "text-white text-sm",
               "hover:text-[#f02d65] transition-colors",
